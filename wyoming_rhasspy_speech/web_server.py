@@ -145,7 +145,7 @@ def get_app(state: AppState) -> Flask:
         return Response(download_model(), content_type="text/plain")
 
     @app.route("/api/train", methods=["POST"])
-    async def api_train() -> Response:
+    async def api_train() -> Union[str, Response]:
         model_id = request.args["id"]
         suffix = request.args.get("suffix")
 
@@ -153,17 +153,22 @@ def get_app(state: AppState) -> Flask:
         logger.setLevel(logging.DEBUG)
         log_queue: "Queue[Optional[logging.LogRecord]]" = Queue()
         handler = QueueHandler(log_queue)
-        logger.addHandler(handler)
-        text = "Training started\n"
 
-        try:
-            if state.settings.hass_auto_train and state.settings.hass_token:
+        if state.settings.hass_auto_train and state.settings.hass_token:
+            try:
                 _LOGGER.debug("Downloading Home Assistant entities")
                 lists_path = state.settings.lists_path(model_id, suffix)
                 lists_path.parent.mkdir(parents=True, exist_ok=True)
                 with open(lists_path, "w", encoding="utf-8") as lists_file:
                     await write_exposed(state, lists_file)
+            except Exception as err:
+                return f"ERROR: Failed to download Home Assistant entities: {err}"
 
+        logger.addHandler(handler)
+        text = "Training started\n"
+
+        try:
+            start_time = time.monotonic()
             await train_model(state, model_id, suffix, log_queue)
             while True:
                 log_item = log_queue.get()
@@ -171,7 +176,8 @@ def get_app(state: AppState) -> Flask:
                     break
 
                 text += log_item.getMessage() + "\n"
-            text += "Training complete\n"
+            training_time = time.monotonic() - start_time
+            text += f"Training complete in {training_time:0.2f} second(s)\n"
         except Exception as err:
             text += f"ERROR: {err}"
         finally:
