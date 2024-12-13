@@ -104,34 +104,35 @@ intents:
   # turn on/off
   # open/close
   # lock/unlock
-  # HassTurnOn:
-  #   data:
-  #     # turn on
-  #     - sentences:
-  #         - "turn on [the] lights"
+  HassTurnOn:
+    data:
+      # turn on
+      - sentences:
+          - "zet [de] lamp[en] aan"
 
-  #     - sentences:
-  #         - "turn on [the] {name}"
-  #         - "turn on [the] {name} in [the] {area}"
-  #         - "turn on [the] {name} (on|in) [the] {floor} [floor]"
-  #       requires_context:
-  #         domain:
-  #           - light
-  #           - switch
+      - sentences:
+          - "zet [de|het] {name} aan"
+          - "zet [de|het] {name} (op|in) [de] {area} aan"
+          - "zet [de|het] {name} (op|in) [de] {floor} [verdieping] aan"
+        requires_context:
+          domain:
+            - light
+            - switch
 
-  #     - sentences:
-  #         - "turn on [all [of]] [the] {area} lights"
-  #         - "turn on [all [of]] [the] lights in [the] {area}"
-  #         - "turn on [all [of]] [the] {floor} [floor] lights"
-  #         - "turn on [all [of]] [the] lights (on|in) [the] {floor} [floor]"
+      - sentences:
+          - "zet [alle] {area}[ ]lampen aan"
+          - "zet [alle] lampen (in|op) [de|het] {area} aan"
+          - "zet [alle] {floor} [verdieping] lampen aan"
+          - "zet [alle] lampen (in|op) [de|het] {floor} [verdieping] aan"
 
-  #     # open
-  #     - sentences:
-  #         - "open [the] {name}"
-  #       requires_context:
-  #         domain:
-  #           - cover
-  #           - valve
+      # open
+      - sentences:
+          - "open [de|het] {name}"
+          - "(doe|maak|zet) [de|het] {name} open"
+        requires_context:
+          domain:
+            - cover
+            - valve
 
   #     - sentences:
   #         - "open [all [of]] [the] {cover_classes} in [the] {area}"
