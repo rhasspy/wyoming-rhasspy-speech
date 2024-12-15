@@ -94,7 +94,8 @@ expansion_rules:
   alle: "die|alle|sämtliche"
   alle_lichter: "das Licht|<alle> Lichter"
   schalte: "(mach|schalt)[e]"
-  timer_set: "(starte|setze|stelle|erstelle)"
+  timer_set: "starte|setze|stelle|erstelle"
+  timer_cancel: "beende|stoppe"
 
 intents:
   # nevermind
@@ -349,32 +350,33 @@ intents:
           - "<timer_set> [einen] Timer (auf|für) {hours} Stunden und {minutes_large} Minuten"
           - "<timer_set> [einen] Timer (auf|für) {hours} Stunden und {minutes_extra} Minuten"
 
-  # HassCancelTimer:
-  #   data:
-  #     - sentences:
-  #         - "<timer_cancel>[ (den|meinen)] Timer"
+  HassCancelTimer:
+    data:
+      - sentences:
+          - "<timer_cancel>[ (den|meinen)] Timer"
 
-  # HassCancelAllTimers:
-  #   data:
-  #     - sentences:
-  #         - "<timer_cancel> (alle[ meine]|sämtliche) Timer"
+  HassCancelAllTimers:
+    data:
+      - sentences:
+          - "<timer_cancel> (alle[ meine]|sämtliche) Timer"
 
-  # HassPauseTimer:
-  #   data:
-  #     - sentences:
-  #         - "pausiere[ (den|meinen)] Timer"
+  HassPauseTimer:
+    data:
+      - sentences:
+          - "pausiere[ (den|meinen)] Timer"
+          - "halte[ (den|meinen)] Timer an"
 
-  # HassUnpauseTimer:
-  #   data:
-  #     - sentences:
-  #         - "setze[ (den|meinen)] Timer fort"
+  HassUnpauseTimer:
+    data:
+      - sentences:
+          - "setze[ (den|meinen)] Timer fort"
 
-  # HassTimerStatus:
-  #   data:
-  #     - sentences:
-  #         - "Timer Status"
-  #         - "Status (des|meines) Timers"
-  #         - "wie lange läuft (der|mein) Timer noch"
+  HassTimerStatus:
+    data:
+      - sentences:
+          - "Timer Status"
+          - "Status (des|meines) Timers"
+          - "wie lange läuft (der|mein) Timer noch"
 
   # # media players
   # HassMediaPause:
