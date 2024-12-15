@@ -48,11 +48,11 @@ lists:
         out: 45
   minutes_half:
     values:
-      - in: halbe
+      - in: einhalb
         out: 30
   hours_half:
     values:
-      - in: halbe
+      - in: einhalb
         out: 30
   hours:
     range:
@@ -86,6 +86,7 @@ expansion_rules:
   alle: "die|alle|sämtliche"
   alle_lichter: "das Licht|<alle> Lichter"
   schalte: "(mach|schalt)[e]"
+  timer_set: "(starte|setze|stelle|erstelle)"
 
 intents:
   # nevermind
@@ -309,43 +310,43 @@ intents:
   #         - "set [the] {floor} [floor] lights to {color}"
   #         - "set [the] lights (on|in) [the] {floor} [floor] to {color}"
 
-  # # timers
-  # HassStartTimer:
-  #   data:
-  #     # seconds
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for {seconds} seconds"
+  # timers
+  HassStartTimer:
+    data:
+      # seconds
+      - sentences:
+          - "<timer_set> [einen] Timer (auf|für) {seconds} Sekunden"
 
-  #     # minutes
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 minute"
-  #         - "(set|start|create) [a] timer for {minutes_small} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_large} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_extra} minutes"
+      # minutes
+      - sentences:
+          - "<timer_set> [einen] Timer (auf|für) eine Minute"
+          - "<timer_set> [einen] Timer (auf|für) {minutes_small} Minuten"
+          - "<timer_set> [einen] Timer (auf|für) {minutes_large} Minuten"
+          - "<timer_set> [einen] Timer (auf|für) {minutes_extra} Minuten"
 
-  #     # minutes half
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 and a {minutes_half:seconds} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_small} and a {minutes_half:seconds} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_large} and a {minutes_half:seconds} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_extra} and a {minutes_half:seconds} minutes"
+      # minutes half
+      - sentences:
+          - "<timer_set> [einen] Timer (auf|für) ein{minutes_half:seconds} Minuten"
+          - "<timer_set> [einen] Timer (auf|für) {minutes_small}{minutes_half:seconds} Minuten"
+          - "<timer_set> [einen] Timer (auf|für) {minutes_large}{minutes_half:seconds} Minuten"
+          - "<timer_set> [einen] Timer (auf|für) {minutes_extra}{minutes_half:seconds} Minuten"
 
-  #     # hours
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 hour"
-  #         - "(set|start|create) [a] timer for {hours} hours"
+      # hours
+      - sentences:
+          - "<timer_set> [einen] Timer (auf|für) eine Stunde"
+          - "<timer_set> [einen] Timer (auf|für) {hours} Stunden"
 
-  #     # hours half
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 and a {hours_half:minutes} hours"
-  #         - "(set|start|create) [a] timer for {hours} and a {hours_half:hours} hours"
+      # hours half
+      - sentences:
+          - "<timer_set> [einen] Timer (auf|für) ein{hours_half:minutes} Stunden"
+          - "<timer_set> [einen] Timer (auf|für) {hours}{hours_half:minutes} Stunden"
 
-  #     # hours + minutes
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 hour and 1 minute"
-  #         - "(set|start|create) [a] timer for {hours} hours and {minutes_small} minutes"
-  #         - "(set|start|create) [a] timer for {hours} hours and {minutes_large} minutes"
-  #         - "(set|start|create) [a] timer for {hours} hours and {minutes_extra} minutes"
+      # hours + minutes
+      - sentences:
+          - "<timer_set> [einen] Timer (auf|für) eine Stunde und eine Minute"
+          - "<timer_set> [einen] Timer (auf|für) {hours} Stunden und {minutes_small} Minuten"
+          - "<timer_set> [einen] Timer (auf|für) {hours} Stunden und {minutes_large} Minuten"
+          - "<timer_set> [einen] Timer (auf|für) {hours} Stunden und {minutes_extra} Minuten"
 
   # HassCancelTimer:
   #   data:
