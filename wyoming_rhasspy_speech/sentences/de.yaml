@@ -95,6 +95,7 @@ expansion_rules:
   alle: "die|alle|sämtliche"
   alle_lichter: "das Licht|<alle> Lichter"
   schalte: "(mach|schalt)[e]"
+  brightness: "{brightness} Prozent"
   # Timers
   timer_set: "starte|setze|stelle|erstelle"
   timer_cancel: "beende|stoppe"
@@ -205,7 +206,6 @@ intents:
         requires_context:
           domain: scene
 
-
   HassTurnOff:
     data:
       # turn off all lights
@@ -258,40 +258,40 @@ intents:
         requires_context:
           domain: lock
 
-  # # light brightness/color
-  # HassLightSet:
-  #   data:
-  #     # brightness
-  #     - sentences:
-  #         - "set [the] brightness of [the] {name} to {brightness} percent"
-  #         - "set [the] {name} brightness to {brightness} percent"
-  #       requires_context:
-  #         domain: light
+  # light brightness/color
+  HassLightSet:
+    data:
+      # brightness
+      - sentences:
+          - "setze [die ]Helligkeit[ von] <name> auf <brightness>"
+          - "stelle [die ]Helligkeit[ von] <name> auf <brightness>[ ein]"
+          - "setze[ von] <name> [die ]Helligkeit auf <brightness>"
+          - "stelle[ von] <name> [die ]Helligkeit auf <brightness>[ ein]"
+        requires_context:
+          domain: light
 
-  #     - sentences:
-  #         - "set [the] brightness of [the] {area} to {brightness} percent"
-  #         - "set [the] {area} brightness to {brightness} percent"
+      - sentences:
+          - "setze [die ]Helligkeit <area_floor> auf <brightness>"
+          - "stelle [die ]Helligkeit <area_floor> auf <brightness>[ ein]"
+          - "setze <area_floor> [die ]Helligkeit auf <brightness>"
+          - "stelle <area_floor> [die ]Helligkeit auf <brightness>[ ein]"
 
-  #     - sentences:
-  #         - "set [the] {floor} [floor] brightness to {brightness} percent"
-  #         - "set [the] brightness of [the] {floor} [floor] to {brightness} percent"
+      # color
+      - sentences:
+          - "setze [die ]Farbe[ von] <name> auf {color}"
+          - "setze[ von] <name> [die ]Farbe auf {color}"
+          - "stelle [die ]Farbe[ von] <name> auf {color}[ ein]"
+          - "stelle[ von] <name> [die ]Farbe auf {color}[ ein]"
+        requires_context:
+          domain: light
 
-  #     # color
-  #     - sentences:
-  #         - "set [the] [color of [the]] {name} to {color}"
-  #         - "set [the] {name} [color] to {color}"
-  #       requires_context:
-  #         domain: light
-
-  #     - sentences:
-  #         - "set [the] [color of [the]] {area} lights to {color}"
-  #         - "set [the] {area} lights to {color}"
-  #         - "set [the] lights in [the] {area} to {color}"
-
-  #     - sentences:
-  #         - "set [the] [color of [the]] {floor} [floor] lights to {color}"
-  #         - "set [the] {floor} [floor] lights to {color}"
-  #         - "set [the] lights (on|in) [the] {floor} [floor] to {color}"
+      - sentences:
+          - "setze [die ]Farbe <area_floor> (der|aller) Lichter auf {color}"
+          - "setze [die ]Farbe (der|aller) Lichter <area_floor> auf {color}"
+          - "setze <area_floor> [die ]Farbe (der|aller) Lichter auf {color}"
+          - "stelle [die ]Farbe <area_floor> (der|aller) Lichter auf {color}[ ein]"
+          - "stelle [die ]Farbe (der|aller) Lichter <area_floor> auf {color}[ ein]"
+          - "stelle <area_floor> [die ]Farbe (der|aller) Lichter auf {color}[ ein]"
 
   # timers
   HassStartTimer:
