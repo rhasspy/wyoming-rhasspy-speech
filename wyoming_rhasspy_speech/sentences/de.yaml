@@ -154,27 +154,23 @@ intents:
           - "<schalte> <floor> <alle_lichter> an"
 
       # open named cover or valve
+      # named cover or valve in area and
+      # named cover or valve on floor
       - sentences:
           - "öffne <name>"
           - "mach[e] <name> auf"
-        requires_context:
-          domain:
-            - cover
-            - valve
-
-      # open named in area
-      - sentences:
           - "öffne <name> <area>"
           - "öffne <area> <name>"
           - "mach[e] <name> <area> auf"
           - "mach[e] <area> <name> auf"
-
-      # open named on floor
-      - sentences:
           - "öffne <name> <floor>"
           - "öffne <floor> <name>"
           - "mach[e] <name> <floor> auf"
           - "mach[e] <floor> <name> auf"
+        requires_context:
+          domain:
+            - cover
+            - valve
 
       # open all covers in area or on floor
       - sentences:
@@ -235,27 +231,23 @@ intents:
           - "<schalte> <floor> <alle_lichter> aus"
 
       # close named cover or valve
+      # named cover or valve in area and
+      # named cover or valve on floor
       - sentences:
           - "schließ[e] <name>"
           - "mach[e] <name> zu"
-        requires_context:
-          domain:
-            - cover
-            - valve
-
-      # close named in area
-      - sentences:
           - "schließ[e] <name> <area>"
           - "schließ[e] <area> <name>"
           - "mach[e] <name> <area> zu"
           - "mach[e] <area> <name> zu"
-
-      # close named on floor
-      - sentences:
           - "schließ[e] <name> <floor>"
           - "schließ[e] <floor> <name>"
           - "mach[e] <name> <floor> zu"
           - "mach[e] <floor> <name> zu"
+        requires_context:
+          domain:
+            - cover
+            - valve
 
       # close all covers in area or on floor
       - sentences:
@@ -327,9 +319,9 @@ intents:
       # minutes half
       - sentences:
           - "<timer_set> [einen] Timer (auf|für) ein{minutes_half:seconds} Minuten"
-          - "<timer_set> [einen] Timer (auf|für) {minutes_small}{minutes_half:seconds} Minuten"
-          - "<timer_set> [einen] Timer (auf|für) {minutes_large}{minutes_half:seconds} Minuten"
-          - "<timer_set> [einen] Timer (auf|für) {minutes_extra}{minutes_half:seconds} Minuten"
+          # - "<timer_set> [einen] Timer (auf|für) {minutes_small}{minutes_half:seconds} Minuten"
+          # - "<timer_set> [einen] Timer (auf|für) {minutes_large}{minutes_half:seconds} Minuten"
+          # - "<timer_set> [einen] Timer (auf|für) {minutes_extra}{minutes_half:seconds} Minuten"
 
       # hours
       - sentences:
@@ -339,7 +331,7 @@ intents:
       # hours half
       - sentences:
           - "<timer_set> [einen] Timer (auf|für) ein{hours_half:minutes} Stunden"
-          - "<timer_set> [einen] Timer (auf|für) {hours}{hours_half:minutes} Stunden"
+          # - "<timer_set> [einen] Timer (auf|für) {hours}{hours_half:minutes} Stunden"
 
       # hours + minutes
       - sentences:
