@@ -411,10 +411,14 @@ intents:
   HassMediaNext:
     data:
       - sentences:
-          - "[<starte> ]<naechster>[ <song>]"
+          - "[<starte> ]nächsten (Titel|Song|Track)"
+          - "[<starte> ]nächstes (Lied|Stück)"
+          - "nächster (Titel|Song|Track)"
 
       - sentences:
-          - "[<starte> ]<naechster>[ <song>][ (an|am|auf)] <name>"
+          - "[<starte> ]nächsten (Titel|Song|Track)[ (an|am|auf)] <name>"
+          - "[<starte> ]nächstes (Lied|Stück)[ (an|am|auf)] <name>"
+          - "nächster (Titel|Song|Track)[ (an|am|auf)] <name>"
         requires_context:
           domain: media_player
 
