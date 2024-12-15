@@ -94,8 +94,13 @@ expansion_rules:
   alle: "die|alle|sämtliche"
   alle_lichter: "das Licht|<alle> Lichter"
   schalte: "(mach|schalt)[e]"
+  # Timers
   timer_set: "starte|setze|stelle|erstelle"
   timer_cancel: "beende|stoppe"
+  # Media Players
+  naechster: "nächste[r|s|n]"
+  starte: (starte|spiele)
+  song: "(Titel|Lied|Song|Track|Stück)"
 
 intents:
   # nevermind
@@ -378,39 +383,40 @@ intents:
           - "Status (des|meines) Timers"
           - "wie lange läuft (der|mein) Timer noch"
 
-  # # media players
-  # HassMediaPause:
-  #   data:
-  #     - sentences:
-  #         - "(pausiere[n]|pause|anhalten|stopp|halt[e an])"
+  # media players
+  HassMediaPause:
+    data:
+      - sentences:
+          - "[[die ]Musik ](pausieren|pause|anhalten|stopp[en]|halt)"
+          - "(pausiere|stoppe)[ die] Musik"
+          - "halt[e][ die] Musik an"
 
-  #     - sentences:
-  #         - "(pausiere|pause) <name>"
-  #         - "halte <name> an"
-  #         - "<name> (pausieren|pause|anhalten|stopp|halt)"
-  #       requires_context:
-  #         domain: media_player
+      - sentences:
+          - "(pausiere|pause|stopp[e]) <name>"
+          - "halte <name> an"
+          - "<name> (pausieren|pause|anhalten|stopp|halt)"
+        requires_context:
+          domain: media_player
 
-  # HassMediaUnpause:
-  #   data:
-  #     - sentences:
-  #         - "fortsetzen|weiter[ (<machen>|laufen lassen)]"
+  HassMediaUnpause:
+    data:
+      - sentences:
+          - "fortsetzen|weiter[ (machen|laufen lassen)]"
 
-  #     - sentences:
-  #         - "<name> weiter[ (<machen>|laufen lassen)]"
-  #         - "<name> fortsetzen"
-  #       requires_context:
-  #         domain: media_player
+      - sentences:
+          - "<name> fortsetzen|weiter[ (machen|laufen lassen)]"
+        requires_context:
+          domain: media_player
 
-  # HassMediaNext:
-  #   data:
-  #     - sentences:
-  #         - "[<starte> ]<naechster>[ <song>]"
+  HassMediaNext:
+    data:
+      - sentences:
+          - "[<starte> ]<naechster>[ <song>]"
 
-  #     - sentences:
-  #         - "[<starte> ]<naechster>[ <song>][ (<an>|am)] <name>"
-  #       requires_context:
-  #         domain: media_player
+      - sentences:
+          - "[<starte> ]<naechster>[ <song>][ (an|am|auf)] <name>"
+        requires_context:
+          domain: media_player
 
   # # temperature
   # HassGetTemperature:
