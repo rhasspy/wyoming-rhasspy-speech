@@ -54,6 +54,14 @@ lists:
     values:
       - in: einhalb
         out: 30
+  hours_special:
+    values:
+      - in: viertel
+        out: 15
+      - in: halbe
+        out: 30
+      - in: dreiviertel
+        out: 45
   hours:
     range:
       from: 1
@@ -316,22 +324,23 @@ intents:
           - "<timer_set> [einen] Timer (auf|für) {minutes_large} Minuten"
           - "<timer_set> [einen] Timer (auf|für) {minutes_extra} Minuten"
 
-      # minutes half
-      - sentences:
-          - "<timer_set> [einen] Timer (auf|für) ein{minutes_half:seconds} Minuten"
-          # - "<timer_set> [einen] Timer (auf|für) {minutes_small}{minutes_half:seconds} Minuten"
-          # - "<timer_set> [einen] Timer (auf|für) {minutes_large}{minutes_half:seconds} Minuten"
-          # - "<timer_set> [einen] Timer (auf|für) {minutes_extra}{minutes_half:seconds} Minuten"
+      # # minutes half
+      # - sentences:
+      #     - "<timer_set> [einen] Timer (auf|für) ein{minutes_half:seconds} Minuten"
+      #     - "<timer_set> [einen] Timer (auf|für) {minutes_small}{minutes_half:seconds} Minuten"
+      #     - "<timer_set> [einen] Timer (auf|für) {minutes_large}{minutes_half:seconds} Minuten"
+      #     - "<timer_set> [einen] Timer (auf|für) {minutes_extra}{minutes_half:seconds} Minuten"
 
       # hours
       - sentences:
           - "<timer_set> [einen] Timer (auf|für) eine Stunde"
           - "<timer_set> [einen] Timer (auf|für) {hours} Stunden"
+          - "<timer_set> [einen] Timer (auf|für) eine {hours_special:minutes} Stunde"
 
-      # hours half
-      - sentences:
-          - "<timer_set> [einen] Timer (auf|für) ein{hours_half:minutes} Stunden"
-          # - "<timer_set> [einen] Timer (auf|für) {hours}{hours_half:minutes} Stunden"
+      # # hours half
+      # - sentences:
+      #     - "<timer_set> [einen] Timer (auf|für) einein{hours_half:minutes} Stunden"
+      #     - "<timer_set> [einen] Timer (auf|für) {hours}{hours_half:minutes} Stunden"
 
       # hours + minutes
       - sentences:
