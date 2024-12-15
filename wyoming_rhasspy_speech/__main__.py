@@ -692,13 +692,15 @@ class RhasspySpeechEventHandler(AsyncEventHandler):
         )
         for model_id, suffix in trained_models:
             # en_US-rhasspy -> rhasspy
-            language, program = model_id.split("-", maxsplit=1)
+            language = model_id.split("-", maxsplit=1)[0]
             if suffix:
-                program = f"{program}-{suffix}"
+                program = f"rhasspy-{suffix}"
+            else:
+                program = "rhasspy"
 
             language_support[program][language] = (model_id, suffix)
 
-        return Info(
+        info = Info(
             asr=[
                 AsrProgram(
                     name=program,
@@ -726,6 +728,9 @@ class RhasspySpeechEventHandler(AsyncEventHandler):
                 for program, languages in language_support.items()
             ],
         )
+        _LOGGER.debug(info)
+
+        return info
 
 
 def multiply_volume(chunk: bytes, volume_multiplier: float) -> bytes:
