@@ -190,6 +190,14 @@ async def main() -> None:
         )
     )
 
+    # Add default models for languages
+    for model in MODELS.values():
+        if model.language_code not in state.settings.model_id_for_language:
+            state.settings.model_id_for_language[model.language_code] = model.id
+
+        if model.language_family not in state.settings.model_id_for_language:
+            state.settings.model_id_for_language[model.language_family] = model.id
+
     if args.auto_train:
         model: Optional[Model] = None
         for model_id, maybe_model in MODELS.items():

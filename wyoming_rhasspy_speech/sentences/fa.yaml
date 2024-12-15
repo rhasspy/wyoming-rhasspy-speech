@@ -1,32 +1,28 @@
-language: ca
-
-expansion_rules:
-  pronom_singular: "((el|la|es|sa) |l'|s')"
-  name: "[<pronom_singular>]{name}"
+language: fa
 
 intents:
   # nevermind
   HassNevermind:
     data:
       - sentences:
-          - "cancel·lar [la comanda|l'ordre]"
+          - "مهم نیست"
 
   # date, time
   HassGetCurrentTime:
     data:
       - sentences:
-          - "quina hora és"
+          - "ساعت چنده"
 
   HassGetCurrentDate:
     data:
       - sentences:
-          - "quin dia és [avui]"
+          - "تاریخ چه روزی است"
 
   # turn on
   HassTurnOn:
     data:
       - sentences:
-          - "encén <name>"
+          - "{name} (را | رو) روشن کن"
         requires_context:
           domain:
             - light
@@ -36,7 +32,7 @@ intents:
   HassTurnOff:
     data:
       - sentences:
-          - "apaga <name>"
+          - "{name} (را | رو) خاموش کن"
         requires_context:
           domain:
             - light

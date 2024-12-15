@@ -1,32 +1,28 @@
-language: ca
-
-expansion_rules:
-  pronom_singular: "((el|la|es|sa) |l'|s')"
-  name: "[<pronom_singular>]{name}"
+language: hi
 
 intents:
   # nevermind
   HassNevermind:
     data:
       - sentences:
-          - "cancel·lar [la comanda|l'ordre]"
+          - "कोई बात नहीं"
 
   # date, time
   HassGetCurrentTime:
     data:
       - sentences:
-          - "quina hora és"
+          - "कितने बजे हैं"
 
   HassGetCurrentDate:
     data:
       - sentences:
-          - "quin dia és [avui]"
+          - "आज की तारीख क्या है"
 
   # turn on
   HassTurnOn:
     data:
       - sentences:
-          - "encén <name>"
+          - "{name} को चालू करो"
         requires_context:
           domain:
             - light
@@ -36,7 +32,7 @@ intents:
   HassTurnOff:
     data:
       - sentences:
-          - "apaga <name>"
+          - "{name} को बंद करो"
         requires_context:
           domain:
             - light

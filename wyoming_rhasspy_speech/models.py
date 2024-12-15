@@ -9,6 +9,7 @@ class Model:
     id: str
     language: str
     language_code: str
+    language_family: str
     attribution: str
     url: str
     version: Optional[str] = None
@@ -18,13 +19,19 @@ MODEL_IDS = [
     ("ca_ES-coqui", "Catalan, Spain"),
     ("cs_CZ-rhasspy", "Czech, Czech Republic"),
     ("de_DE-zamia", "German, Germany"),
+    ("el_GR-coqui", "Greek, Greece"),
     ("en_US-rhasspy", "English, United States"),
     ("en_US-zamia", "English, United States"),
     ("en_US-coqui", "English, United States"),
     ("es_ES-rhasspy", "Spanish, Spain"),
+    ("eu_ES-coqui", "Basque, Spain"),
+    ("fa_IR-coqui", "Persian, Iran"),
+    ("fi_FI-coqui", "Finnish, Finland"),
     ("fr_FR-rhasspy", "French, France"),
     ("fr_FR-guyot", "French, France"),
+    ("hi_IN-coqui", "Hindi, India"),
     ("it_IT-rhasspy", "Italian, Italy"),
+    ("ka_GE-coqui", "Georgian, Georgia"),
     ("nl_NL-cgn", "Dutch, Netherlands"),
     ("ru_RU-rhasspy", "Russian, Russia"),
 ]
@@ -34,6 +41,7 @@ MODELS: Dict[str, Model] = {
         id=model_id,
         language=model_lang,
         language_code=model_id.split("-", maxsplit=1)[0],
+        language_family=model_id.split("-", maxsplit=1)[0].split("_", maxsplit=1)[0],
         attribution=model_id.split("-", maxsplit=1)[1].capitalize(),
         url=URL_FORMAT.format(model_id=model_id),
     )

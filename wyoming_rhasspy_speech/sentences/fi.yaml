@@ -1,32 +1,28 @@
-language: ca
-
-expansion_rules:
-  pronom_singular: "((el|la|es|sa) |l'|s')"
-  name: "[<pronom_singular>]{name}"
+language: fi
 
 intents:
   # nevermind
   HassNevermind:
     data:
       - sentences:
-          - "cancel·lar [la comanda|l'ordre]"
+          - "ei [sittenkään] mitään"
 
   # date, time
   HassGetCurrentTime:
     data:
       - sentences:
-          - "quina hora és"
+          - "paljonko kello on"
 
   HassGetCurrentDate:
     data:
       - sentences:
-          - "quin dia és [avui]"
+          - "mikä on päivämäärä"
 
   # turn on
   HassTurnOn:
     data:
       - sentences:
-          - "encén <name>"
+          - "laita {name} päälle"
         requires_context:
           domain:
             - light
@@ -36,7 +32,7 @@ intents:
   HassTurnOff:
     data:
       - sentences:
-          - "apaga <name>"
+          - "laita {name} päältä"
         requires_context:
           domain:
             - light
