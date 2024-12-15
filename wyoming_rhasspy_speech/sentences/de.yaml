@@ -416,32 +416,44 @@ intents:
         requires_context:
           domain: climate
 
-  # # questions
-  # HassGetState:
-  #   data:
-  #     # doors, etc.
-  #     - sentences:
-  #         - "ist <name> {cover_states:state}"
-  #       requires_context:
-  #         domain:
-  #           - cover
-  #           - valve
-  #       lists:
-  #         state:
-  #           values:
-  #             - "(offen|auf|oben|geöffnet)"
-  #             - "(geschlossen|zu|unten)"
+  # questions
+  HassGetState:
+    data:
+      # doors, etc.
+      - sentences:
+          - "ist <name> {cover_states:state}"
+        requires_context:
+          domain:
+            - cover
+            - valve
+        lists:
+          cover_states:
+            values:
+              - in: "(offen|auf|oben|geöffnet)"
+                out: open
+              - in: "(geschlossen|zu|unten)"
+                out: closed
 
-  #     # locks
-  #     - sentences:
-  #         - "ist <name> {state}"
-  #       requires_context:
-  #         domain: lock
-  #       lists:
-  #         state:
-  #           values:
-  #             - "(([ab|zu]ge|ver)(schlossen|sperrt)|verriegelt)"
-  #             - "(nicht (([ab|zu]ge|ver)(schlossen|sperrt)|verriegelt)|ent(riegelt|sperrt)|aufge(sperrt|schlossen))"
+      # locks
+      - sentences:
+          - "ist <name> {lock_states:state}"
+        requires_context:
+          domain: lock
+        lists:
+          lock_states:
+            values:
+              - in: "(([ab|zu]ge|ver)(schlossen|sperrt)|verriegelt)"
+                out: locked
+              - in: "(nicht (([ab|zu]ge|ver)(schlossen|sperrt)|verriegelt)|ent(riegelt|sperrt)|aufge(sperrt|schlossen))"
+                out: unlocked
+
+      # sensors, etc.
+      - sentences:
+          - "(wie|was) ist [der (Zustand|Wert) von] <name>"
+        requires_context:
+          domain:
+            - sensor
+            - binary_sensor
 
   # todo
   HassListAddItem:
