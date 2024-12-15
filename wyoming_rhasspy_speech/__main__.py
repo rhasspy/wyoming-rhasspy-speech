@@ -142,6 +142,7 @@ async def main() -> None:
         nargs=2,
         metavar=("language", "model"),
         action="append",
+        default=[],
         help="Set model id for language (e.g., en_US en_US-zamia)",
     )
     #
