@@ -443,13 +443,12 @@ intents:
   #             - "(([ab|zu]ge|ver)(schlossen|sperrt)|verriegelt)"
   #             - "(nicht (([ab|zu]ge|ver)(schlossen|sperrt)|verriegelt)|ent(riegelt|sperrt)|aufge(sperrt|schlossen))"
 
-  # # todo
-  # HassListAddItem:
-  #   data:
-  #     - sentences:
-  #         - "füge {todo_item}[ zu] <meine_liste> hinzu"
-  #         - "füge[ zu] <meine_liste> {todo_item} hinzu"
-  #       expansion_rules:
-  #         meine_liste: "[meine[r]|die|der] ({name}[ Liste]|[Liste] {name})"
-  #       requires_context:
-  #         domain: todo
+  # todo
+  HassListAddItem:
+    data:
+      - sentences:
+          - "füge {todo_item}[ zu][ (meiner|der)] ({name}[ Liste]|[Liste ]{name}) hinzu"
+          - "füge[ zu][ (meiner|der)] ({name}[ Liste]|[Liste ]{name}) {todo_item} hinzu"
+          - "[setz[e] ]{todo_item} auf [meine|die] ({name}[ Liste]|[Liste ]{name})"
+        requires_context:
+          domain: todo
