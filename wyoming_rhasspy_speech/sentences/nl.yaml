@@ -113,7 +113,7 @@ intents:
       - sentences:
           - "(zet|doe|maak) [de|het] {name} aan"
           - "(zet|doe|maak) [de|het] {name} (op|in) [de] {area} aan"
-          - "(zet|doe|maak) [de|het] {name} (op|in) [de] {floor} [verdieping] aan"
+          - "(zet|doe|maak) [de|het] {name} (op|in) [de] {floor}[[ ]verdieping] aan"
         requires_context:
           domain:
             - light
@@ -122,8 +122,8 @@ intents:
       - sentences:
           - "(zet|doe|maak) [alle] {area}[ ]lampen aan"
           - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {area} aan"
-          - "(zet|doe|maak) [alle] {floor}[ ][verdieping] lampen aan"
-          - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {floor} [verdieping] aan"
+          - "(zet|doe|maak) [alle] {floor}[[ ]verdieping] lampen aan"
+          - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {floor}[[ ]verdieping] aan"
 
       # open
       - sentences:
@@ -141,8 +141,8 @@ intents:
           - "(doe|zet|maak) [alle] {area}[ ]{cover_classes} open"
 
       - sentences:
-          - "open [alle] {cover_classes} (op|in) [de|het] {floor}[ ][verdieping]"
-          - "(doe|zet|maak) [alle] {cover_classes} (op|in) [de|het] {floor}[ ][verdieping] open"
+          - "open [alle] {cover_classes} (op|in) [de|het] {floor}[[ ]verdieping]"
+          - "(doe|zet|maak) [alle] {cover_classes} (op|in) [de|het] {floor}[[ ]verdieping] open"
           - "open [alle] {floor}[ ][floor] {cover_classes}"
           - "(doe|zet|maak) [alle] {floor}[ ][floor] {cover_classes} open"
 
@@ -183,7 +183,7 @@ intents:
     - sentences:
         - "(zet|doe|maak) [alle] {area}[ ]lampen uit"
         - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {area} uit"
-        - "(zet|doe|maak) [alle] {floor}[ ][verdieping] lampen uit"
+        - "(zet|doe|maak) [alle] {floor}[[ ]verdieping] lampen uit"
         - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {floor} [verdieping] uit"
 
       # close
@@ -203,8 +203,8 @@ intents:
             - "(doe|zet|maak) [alle] {area}[ ]{cover_classes} dicht"
   
         - sentences:
-            - "sluit [alle] {cover_classes} (op|in) [de|het] {floor}[ ][verdieping]"
-            - "(doe|zet|maak) [alle] {cover_classes} (op|in) [de|het] {floor}[ ][verdieping] dicht"
+            - "sluit [alle] {cover_classes} (op|in) [de|het] {floor}[[ ]verdieping]"
+            - "(doe|zet|maak) [alle] {cover_classes} (op|in) [de|het] {floor}[[ ]verdieping] dicht"
             - "sluit [alle] {floor}[ ][floor] {cover_classes}"
             - "(doe|zet|maak) [alle] {floor}[ ][floor] {cover_classes} dicht"
 
@@ -215,40 +215,40 @@ intents:
       requires_context:
         domain: lock
 
-  # # light brightness/color
-  # HassLightSet:
-  #   data:
-  #     # brightness
-  #     - sentences:
-  #         - "set [the] brightness of [the] {name} to {brightness} percent"
-  #         - "set [the] {name} brightness to {brightness} percent"
-  #       requires_context:
-  #         domain: light
+  # light brightness/color
+  HassLightSet:
+    data:
+      # brightness
+      - sentences:
+          - "(zet|doe|maak) [de] helderheid van [de|het] {name} [naar] {brightness} procent"
+          - "(zet|doe|maak) [de] {name}[ ]helderheid [naar] {brightness} procent"
+        requires_context:
+          domain: light
 
-  #     - sentences:
-  #         - "set [the] brightness of [the] {area} to {brightness} percent"
-  #         - "set [the] {area} brightness to {brightness} percent"
+      - sentences:
+          - "(zet|doe|maak) [de] helderheid van [de|het] {area} [naar] {brightness} procent"
+          - "(zet|doe|maak) [de] {area}[ ]helderheid [naar] {brightness} procent"
 
-  #     - sentences:
-  #         - "set [the] {floor} [floor] brightness to {brightness} percent"
-  #         - "set [the] brightness of [the] {floor} [floor] to {brightness} percent"
+      - sentences:
+          - "(zet|doe|maak) [de] helderheid van [de|het] {floor}[[ ]verdieping] [naar] {brightness} procent"
+          - "(zet|doe|maak) [de] {floor}[[ ]verdieping][ ]helderheid [naar] {brightness} procent"
 
-  #     # color
-  #     - sentences:
-  #         - "set [the] [color of [the]] {name} to {color}"
-  #         - "set [the] {name} [color] to {color}"
-  #       requires_context:
-  #         domain: light
+      # color
+      - sentences:
+          - "(zet|doe|maak) [[de] kleur van] [de|het] {name} naar {color}"
+          - "(zet|doe|maak) [de] {name}[ ]kleur naar {color}"
+        requires_context:
+          domain: light
 
-  #     - sentences:
-  #         - "set [the] [color of [the]] {area} lights to {color}"
-  #         - "set [the] {area} lights to {color}"
-  #         - "set [the] lights in [the] {area} to {color}"
+      - sentences:
+          - "(zet|doe|maak) [[de] kleur van] [de|het] {area} naar {color}"
+          - "(zet|doe|maak) [de] {area}[ ]kleur naar {color}"
+          - "(zet|doe|maak) [de] (lampen|verlichting) in [de|het] {area} naar {color}"
 
-  #     - sentences:
-  #         - "set [the] [color of [the]] {floor} [floor] lights to {color}"
-  #         - "set [the] {floor} [floor] lights to {color}"
-  #         - "set [the] lights (on|in) [the] {floor} [floor] to {color}"
+      - sentences:
+        - "(zet|doe|maak) [[de] kleur van] [de|het] {floor}[[ ]verdieping] naar {color}"
+        - "(zet|doe|maak) [de] {floor}[[ ]verdieping][ ]kleur naar {color}"
+        - "(zet|doe|maak) [de] (lampen|verlichting) in [de|het] {floor}[[ ]verdieping] naar {color}"
 
   # # timers
   # HassStartTimer:
