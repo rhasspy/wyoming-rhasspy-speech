@@ -3,16 +3,16 @@ language: nl
 lists:
   color:
     values:
-      - in: "wit"
-      - in: "zwart"
-      - in: "rood"
-      - in: "oranje"
-      - in: "geel"
-      - in: "groen"
-      - in: "blauw"
-      - in: "paars"
-      - in: "bruin"
-      - in: "roze"
+      - "wit"
+      - "zwart"
+      - "rood"
+      - "oranje"
+      - "geel"
+      - "groen"
+      - "blauw"
+      - "paars"
+      - "bruin"
+      - "roze"
   brightness:
     range:
       type: "percentage"
@@ -35,18 +35,26 @@ lists:
       step: 10
   minutes_extra:
     values:
-      - in: fifteen
+      - in: vijftien
         out: 15
-      - in: forty five
+      - in: vijfenveertig
         out: 45
   minutes_half:
     values:
-      - in: half
+      - in: halve
         out: 30
+  minutes_one_and_a_half:
+    values:
+      - in: anderhalve
+        out: 90
   hours_half:
     values:
       - in: half
         out: 30
+  hours_one_and_a_half:
+    values:
+      - in: anderhalf
+        out: 90
   hours:
     range:
       from: 1
@@ -250,70 +258,70 @@ intents:
         - "(zet|doe|maak) [de] {floor}[[ ]verdieping][ ]kleur naar {color}"
         - "(zet|doe|maak) [de] (lampen|verlichting) in [de|het] {floor}[[ ]verdieping] naar {color}"
 
-  # # timers
-  # HassStartTimer:
-  #   data:
-  #     # seconds
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for {seconds} seconds"
+  # timers
+  HassStartTimer:
+    data:
+      # seconds
+      - sentences:
+          - "(zet|maak|creëer) [een] timer voor {seconds} seconde[n|s]"
 
-  #     # minutes
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 minute"
-  #         - "(set|start|create) [a] timer for {minutes_small} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_large} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_extra} minutes"
+      # minutes
+      - sentences:
+          - "(zet|maak|creëer) [een] timer voor 1 minuut"
+          - "(zet|maak|creëer) [een] timer voor {minutes_small} minuten"
+          - "(zet|maak|creëer) [een] timer voor {minutes_large} minuten"
+          - "(zet|maak|creëer) [een] timer voor {minutes_extra} minuten"
 
-  #     # minutes half
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 and a {minutes_half:seconds} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_small} and a {minutes_half:seconds} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_large} and a {minutes_half:seconds} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_extra} and a {minutes_half:seconds} minutes"
+      # minutes half
+      - sentences:
+          - "(zet|maak|creëer) [een] timer voor {minutes_one_and_a_half:seconds} minuut"
+          - "(zet|maak|creëer) [een] timer voor {minutes_small} en een {minutes_half:seconds} minuut"
+          - "(zet|maak|creëer) [een] timer voor {minutes_large} en een {minutes_half:seconds} minuut"
+          - "(zet|maak|creëer) [een] timer voor {minutes_extra} en een {minutes_half:seconds} minuut"
 
-  #     # hours
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 hour"
-  #         - "(set|start|create) [a] timer for {hours} hours"
+      # hours
+      - sentences:
+          - "(zet|maak|creëer) [een] timer voor 1 uur"
+          - "(zet|maak|creëer) [een] timer voor {hours} uur"
 
-  #     # hours half
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 and a {hours_half:minutes} hours"
-  #         - "(set|start|create) [a] timer for {hours} and a {hours_half:hours} hours"
+      # hours half
+      - sentences:
+          - "(zet|maak|creëer) [een] timer voor {hours_and_a_half:minutes} uur"
+          - "(zet|maak|creëer) [een] timer voor {hours} en een {hours_half:minutes} uur"
 
-  #     # hours + minutes
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 hour and 1 minute"
-  #         - "(set|start|create) [a] timer for {hours} hours and {minutes_small} minutes"
-  #         - "(set|start|create) [a] timer for {hours} hours and {minutes_large} minutes"
-  #         - "(set|start|create) [a] timer for {hours} hours and {minutes_extra} minutes"
+      # hours + minutes
+      - sentences:
+          - "(zet|maak|creëer) [een] timer voor 1 uur en 1 minuut"
+          - "(zet|maak|creëer) [een] timer voor {hours} uur en {minutes_small} minuten"
+          - "(zet|maak|creëer) [een] timer voor {hours} uur en {minutes_large} minuten"
+          - "(zet|maak|creëer) [een] timer voor {hours} uur en {minutes_extra} minuten"
 
-  # HassCancelTimer:
-  #   data:
-  #     - sentences:
-  #         - "(cancel|stop) [the|my] timer"
+  HassCancelTimer:
+    data:
+      - sentences:
+          - "(annuleer|stop) [de|mijn|m'n] timer"
 
-  # HassCancelAllTimers:
-  #   data:
-  #     - sentences:
-  #         - "(cancel|stop) all [of] [the|my] timers"
+  HassCancelAllTimers:
+    data:
+      - sentences:
+          - "(annuleer|stop) (alle|al (de|mijn|m'n)) timers"
 
-  # HassPauseTimer:
-  #   data:
-  #     - sentences:
-  #         - "pause [the|my] timer"
+  HassPauseTimer:
+    data:
+      - sentences:
+          - "pauzeeer [de|mijn|m'n] timer"
 
-  # HassUnpauseTimer:
-  #   data:
-  #     - sentences:
-  #         - "resume [the|my] timer"
+  HassUnpauseTimer:
+    data:
+      - sentences:
+          - "hervat [de|mijn|m'n] timer"
 
-  # HassTimerStatus:
-  #   data:
-  #     - sentences:
-  #         - "timer status"
-  #         - "status of [the|my] timer[s]"
-  #         - "[how much] time [is] left on [the|my] timer[s]"
+  HassTimerStatus:
+    data:
+      - sentences:
+          - "timer status"
+          - "status van [de|mijn|m'n] timer[s]"
+          - "[hoe veel] tijd [is [er]] [nog] [over] (op|van) [de|mijn|m'n] timer[s]"
 
   # # media players
   # HassMediaPause:
@@ -394,10 +402,11 @@ intents:
   #             - locked
   #             - unlocked
 
-  # # todo
-  # HassListAddItem:
-  #   data:
-  #     - sentences:
-  #         - "add {todo_item} to [the|my] {name} [list]"
-  #       requires_context:
-  #         domain: todo
+  # todo
+  HassListAddItem:
+    data:
+      - sentences:
+          - "zet {todo_item} op [de|mijn|m'n] {name} [lijst]"
+          - "voeg {todo_item} aan [de|mijn|m'n] {name} [lijst] toe"
+        requires_context:
+          domain: todo
