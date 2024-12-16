@@ -4,15 +4,25 @@ lists:
   color:
     values:
       - in: "wit"
+        out: "white"
       - in: "zwart"
+        out: "black"
       - in: "rood"
+        out: "red"
       - in: "oranje"
+        out: "orange"
       - in: "geel"
+        out: "yellow"
       - in: "groen"
+        out: "green"
       - in: "blauw"
-      - in: "paars"
+        out: "blue"
+      - in: "(paars|violet)"
+        out: "purple"
       - in: "bruin"
+        out: "brown"
       - in: "roze"
+        out: "pink"
   brightness:
     range:
       type: "percentage"
@@ -35,18 +45,26 @@ lists:
       step: 10
   minutes_extra:
     values:
-      - in: fifteen
+      - in: vijftien
         out: 15
-      - in: forty five
+      - in: vijfenveertig
         out: 45
   minutes_half:
     values:
-      - in: half
+      - in: halve
         out: 30
+  minutes_one_and_a_half:
+    values:
+      - in: anderhalve
+        out: 90
   hours_half:
     values:
       - in: half
         out: 30
+  hours_one_and_a_half:
+    values:
+      - in: anderhalf
+        out: 90
   hours:
     range:
       from: 1
@@ -104,285 +122,311 @@ intents:
   # turn on/off
   # open/close
   # lock/unlock
-  # HassTurnOn:
-  #   data:
-  #     # turn on
-  #     - sentences:
-  #         - "turn on [the] lights"
+  HassTurnOn:
+    data:
+      # turn on
+      - sentences:
+          - "(zet|doe) [de] lamp[en] aan"
 
-  #     - sentences:
-  #         - "turn on [the] {name}"
-  #         - "turn on [the] {name} in [the] {area}"
-  #         - "turn on [the] {name} (on|in) [the] {floor} [floor]"
-  #       requires_context:
-  #         domain:
-  #           - light
-  #           - switch
+      - sentences:
+          - "(zet|doe|maak) [de|het] {name} aan"
+          - "(zet|doe|maak) [de|het] {name} (op|in) [de] {area} aan"
+          - "(zet|doe|maak) [de|het] {name} (op|in) [de] {floor}[[ ]verdieping] aan"
+        requires_context:
+          domain:
+            - light
+            - switch
 
-  #     - sentences:
-  #         - "turn on [all [of]] [the] {area} lights"
-  #         - "turn on [all [of]] [the] lights in [the] {area}"
-  #         - "turn on [all [of]] [the] {floor} [floor] lights"
-  #         - "turn on [all [of]] [the] lights (on|in) [the] {floor} [floor]"
+      - sentences:
+          - "(zet|doe|maak) [alle] {area}[ ]lampen aan"
+          - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {area} aan"
+          - "(zet|doe|maak) [alle] {floor}[[ ]verdieping] lampen aan"
+          - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {floor}[[ ]verdieping] aan"
 
-  #     # open
-  #     - sentences:
-  #         - "open [the] {name}"
-  #       requires_context:
-  #         domain:
-  #           - cover
-  #           - valve
+      # open
+      - sentences:
+          - "open [de|het] {name}"
+          - "(doe|maak|zet) [de|het] {name} open"
+        requires_context:
+          domain:
+            - cover
+            - valve
 
-  #     - sentences:
-  #         - "open [all [of]] [the] {cover_classes} in [the] {area}"
-  #         - "open [all [of]] [the] {area} {cover_classes}"
+      - sentences:
+          - "open [alle] {cover_classes} (in|op) [de|het] {area}"
+          - "(doe|zet|maak) [alle] {cover_classes} (in|op) [de|het] {area} open"
+          - "open [alle] {area}[ ]{cover_classes}"
+          - "(doe|zet|maak) [alle] {area}[ ]{cover_classes} open"
 
-  #     - sentences:
-  #         - "open [all [of]] [the] [the] {cover_classes} (on|in) [the] {floor} [floor]"
-  #         - "open [all [of]] [the] {floor} [floor] {cover_classes}"
+      - sentences:
+          - "open [alle] {cover_classes} (op|in) [de|het] {floor}[[ ]verdieping]"
+          - "(doe|zet|maak) [alle] {cover_classes} (op|in) [de|het] {floor}[[ ]verdieping] open"
+          - "open [alle] {floor}[ ][floor] {cover_classes}"
+          - "(doe|zet|maak) [alle] {floor}[ ][floor] {cover_classes} open"
 
-  #     # lock
-  #     - sentences:
-  #         - "lock [the] {name}"
-  #       requires_context:
-  #         domain: lock
+      # lock
+      - sentences:
+          - "vergrendel [de|het] {name}"
+          - (zet|doe|maak|draai) [de|het] {name} op slot"
+        requires_context:
+          domain: lock
 
-  #     # script
-  #     - sentences:
-  #         - "run {name}"
-  #       requires_context:
-  #         domain: script
+      # script
+      - sentences:
+          - "start {name}"
+        requires_context:
+          domain: script
 
-  #     # scene
-  #     - sentences:
-  #         - "activate {name}"
-  #       requires_context:
-  #         domain: scene
+      # scene
+      - sentences:
+          - "activeer {name}"
+        requires_context:
+          domain: scene
 
-  # HassTurnOff:
-  #   data:
-  #     # turn off
-  #     - sentences:
-  #         - "turn off [the] lights"
+  HassTurnOff:
+    data:
+      # turn off
+      - sentences:
+        - "(zet|doe) [de] lamp[en] uit"
 
-  #     - sentences:
-  #         - "turn off [the] {name}"
-  #       requires_context:
-  #         domain:
-  #           - light
-  #           - switch
+    - sentences:
+        - "(zet|doe|maak) [de|het] {name} uit"
+        - "(zet|doe|maak) [de|het] {name} (op|in) [de] {area} uit"
+        - "(zet|doe|maak) [de|het] {name} (op|in) [de] {floor} [verdieping] uit"
+      requires_context:
+        domain:
+          - light
+          - switch
 
-  #     - sentences:
-  #         - "turn off [all [of]] [the] {area} lights"
-  #         - "turn off [all [of]] [the] lights in [the] {area}"
+    - sentences:
+        - "(zet|doe|maak) [alle] {area}[ ]lampen uit"
+        - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {area} uit"
+        - "(zet|doe|maak) [alle] {floor}[[ ]verdieping] lampen uit"
+        - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {floor} [verdieping] uit"
 
-  #     - sentences:
-  #         - "turn off [all [of]] [the] {floor} [floor] lights"
-  #         - "turn off [all [of]] [the] lights (on|in) [the] {floor} [floor]"
+      # close
+      - sentences:
+        - "sluit [de|het] {name}"
+        - "(doe|maak|zet) [de|het] {name} dicht"
+      requires_context:
+        domain:
+          - cover
+          - valve
 
-  #     # close
-  #     - sentences:
-  #         - "close [the] {name}"
-  #       requires_context:
-  #         domain:
-  #           - cover
-  #           - valve
 
-  #     - sentences:
-  #         - "close [all [of]] [the] {cover_classes} in [the] {area}"
-  #         - "close [all [of]] [the] {area} {cover_classes}"
-  #         - "close [all [of]] [the] {cover_classes} (on|in) [the] {floor} [floor]"
-  #         - "close [all [of]] [the] {floor} [floor] {cover_classes}"
+          - sentences:
+            - "sluit [alle] {cover_classes} (in|op) [de|het] {area}"
+            - "(doe|zet|maak) [alle] {cover_classes} (in|op) [de|het] {area} dicht"
+            - "sluit [alle] {area}[ ]{cover_classes}"
+            - "(doe|zet|maak) [alle] {area}[ ]{cover_classes} dicht"
+  
+        - sentences:
+            - "sluit [alle] {cover_classes} (op|in) [de|het] {floor}[[ ]verdieping]"
+            - "(doe|zet|maak) [alle] {cover_classes} (op|in) [de|het] {floor}[[ ]verdieping] dicht"
+            - "sluit [alle] {floor}[ ][floor] {cover_classes}"
+            - "(doe|zet|maak) [alle] {floor}[ ][floor] {cover_classes} dicht"
 
-  #     # unlock
-  #     - sentences:
-  #         - "unlock [the] {name}"
-  #       requires_context:
-  #         domain: lock
+      # unlock
+      - sentences:
+        - "ontgrendel [de|het] {name}"
+        - (zet|doe|maak|draai) [de|het] {name} van het slot"
+      requires_context:
+        domain: lock
 
-  # # light brightness/color
-  # HassLightSet:
-  #   data:
-  #     # brightness
-  #     - sentences:
-  #         - "set [the] brightness of [the] {name} to {brightness} percent"
-  #         - "set [the] {name} brightness to {brightness} percent"
-  #       requires_context:
-  #         domain: light
+  # light brightness/color
+  HassLightSet:
+    data:
+      # brightness
+      - sentences:
+          - "(zet|doe|maak) [de] helderheid van [de|het] {name} [naar] {brightness} procent"
+          - "(zet|doe|maak) [de] {name}[ ]helderheid [naar] {brightness} procent"
+        requires_context:
+          domain: light
 
-  #     - sentences:
-  #         - "set [the] brightness of [the] {area} to {brightness} percent"
-  #         - "set [the] {area} brightness to {brightness} percent"
+      - sentences:
+          - "(zet|doe|maak) [de] helderheid van [de|het] {area} [naar] {brightness} procent"
+          - "(zet|doe|maak) [de] {area}[ ]helderheid [naar] {brightness} procent"
 
-  #     - sentences:
-  #         - "set [the] {floor} [floor] brightness to {brightness} percent"
-  #         - "set [the] brightness of [the] {floor} [floor] to {brightness} percent"
+      - sentences:
+          - "(zet|doe|maak) [de] helderheid van [de|het] {floor}[[ ]verdieping] [naar] {brightness} procent"
+          - "(zet|doe|maak) [de] {floor}[[ ]verdieping][ ]helderheid [naar] {brightness} procent"
 
-  #     # color
-  #     - sentences:
-  #         - "set [the] [color of [the]] {name} to {color}"
-  #         - "set [the] {name} [color] to {color}"
-  #       requires_context:
-  #         domain: light
+      # color
+      - sentences:
+          - "(zet|doe|maak) [[de] kleur van] [de|het] {name} naar {color}"
+          - "(zet|doe|maak) [de] {name}[ ]kleur naar {color}"
+        requires_context:
+          domain: light
 
-  #     - sentences:
-  #         - "set [the] [color of [the]] {area} lights to {color}"
-  #         - "set [the] {area} lights to {color}"
-  #         - "set [the] lights in [the] {area} to {color}"
+      - sentences:
+          - "(zet|doe|maak) [[de] kleur van] [de|het] {area} naar {color}"
+          - "(zet|doe|maak) [de] {area}[ ]kleur naar {color}"
+          - "(zet|doe|maak) [de] (lampen|verlichting) in [de|het] {area} naar {color}"
 
-  #     - sentences:
-  #         - "set [the] [color of [the]] {floor} [floor] lights to {color}"
-  #         - "set [the] {floor} [floor] lights to {color}"
-  #         - "set [the] lights (on|in) [the] {floor} [floor] to {color}"
+      - sentences:
+        - "(zet|doe|maak) [[de] kleur van] [de|het] {floor}[[ ]verdieping] naar {color}"
+        - "(zet|doe|maak) [de] {floor}[[ ]verdieping][ ]kleur naar {color}"
+        - "(zet|doe|maak) [de] (lampen|verlichting) in [de|het] {floor}[[ ]verdieping] naar {color}"
 
-  # # timers
-  # HassStartTimer:
-  #   data:
-  #     # seconds
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for {seconds} seconds"
+  # timers
+  HassStartTimer:
+    data:
+      # seconds
+      - sentences:
+          - "(zet|maak|creëer) [een] timer voor {seconds} seconde[n|s]"
 
-  #     # minutes
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 minute"
-  #         - "(set|start|create) [a] timer for {minutes_small} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_large} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_extra} minutes"
+      # minutes
+      - sentences:
+          - "(zet|maak|creëer) [een] timer voor 1 minuut"
+          - "(zet|maak|creëer) [een] timer voor {minutes_small} minuten"
+          - "(zet|maak|creëer) [een] timer voor {minutes_large} minuten"
+          - "(zet|maak|creëer) [een] timer voor {minutes_extra} minuten"
 
-  #     # minutes half
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 and a {minutes_half:seconds} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_small} and a {minutes_half:seconds} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_large} and a {minutes_half:seconds} minutes"
-  #         - "(set|start|create) [a] timer for {minutes_extra} and a {minutes_half:seconds} minutes"
+      # minutes half
+      - sentences:
+          - "(zet|maak|creëer) [een] timer voor {minutes_one_and_a_half:seconds} minuut"
+          - "(zet|maak|creëer) [een] timer voor {minutes_small} en een {minutes_half:seconds} minuut"
+          - "(zet|maak|creëer) [een] timer voor {minutes_large} en een {minutes_half:seconds} minuut"
+          - "(zet|maak|creëer) [een] timer voor {minutes_extra} en een {minutes_half:seconds} minuut"
 
-  #     # hours
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 hour"
-  #         - "(set|start|create) [a] timer for {hours} hours"
+      # hours
+      - sentences:
+          - "(zet|maak|creëer) [een] timer voor 1 uur"
+          - "(zet|maak|creëer) [een] timer voor {hours} uur"
 
-  #     # hours half
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 and a {hours_half:minutes} hours"
-  #         - "(set|start|create) [a] timer for {hours} and a {hours_half:hours} hours"
+      # hours half
+      - sentences:
+          - "(zet|maak|creëer) [een] timer voor {hours_and_a_half:minutes} uur"
+          - "(zet|maak|creëer) [een] timer voor {hours} en een {hours_half:minutes} uur"
 
-  #     # hours + minutes
-  #     - sentences:
-  #         - "(set|start|create) [a] timer for 1 hour and 1 minute"
-  #         - "(set|start|create) [a] timer for {hours} hours and {minutes_small} minutes"
-  #         - "(set|start|create) [a] timer for {hours} hours and {minutes_large} minutes"
-  #         - "(set|start|create) [a] timer for {hours} hours and {minutes_extra} minutes"
+      # hours + minutes
+      - sentences:
+          - "(zet|maak|creëer) [een] timer voor 1 uur en 1 minuut"
+          - "(zet|maak|creëer) [een] timer voor {hours} uur en {minutes_small} minuten"
+          - "(zet|maak|creëer) [een] timer voor {hours} uur en {minutes_large} minuten"
+          - "(zet|maak|creëer) [een] timer voor {hours} uur en {minutes_extra} minuten"
 
-  # HassCancelTimer:
-  #   data:
-  #     - sentences:
-  #         - "(cancel|stop) [the|my] timer"
+  HassCancelTimer:
+    data:
+      - sentences:
+          - "(annuleer|stop) [de|mijn|m'n] timer"
 
-  # HassCancelAllTimers:
-  #   data:
-  #     - sentences:
-  #         - "(cancel|stop) all [of] [the|my] timers"
+  HassCancelAllTimers:
+    data:
+      - sentences:
+          - "(annuleer|stop) (alle|al (de|mijn|m'n)) timers"
 
-  # HassPauseTimer:
-  #   data:
-  #     - sentences:
-  #         - "pause [the|my] timer"
+  HassPauseTimer:
+    data:
+      - sentences:
+          - "pauzeeer [de|mijn|m'n] timer"
 
-  # HassUnpauseTimer:
-  #   data:
-  #     - sentences:
-  #         - "resume [the|my] timer"
+  HassUnpauseTimer:
+    data:
+      - sentences:
+          - "hervat [de|mijn|m'n] timer"
 
-  # HassTimerStatus:
-  #   data:
-  #     - sentences:
-  #         - "timer status"
-  #         - "status of [the|my] timer[s]"
-  #         - "[how much] time [is] left on [the|my] timer[s]"
+  HassTimerStatus:
+    data:
+      - sentences:
+          - "timer status"
+          - "status van [de|mijn|m'n] timer[s]"
+          - "[hoe veel] tijd [is [er]] [nog] [over] (op|van) [de|mijn|m'n] timer[s]"
 
-  # # media players
-  # HassMediaPause:
-  #   data:
-  #     - sentences:
-  #         - "pause [[the ]music]"
+  # media players
+  HassMediaPause:
+    data:
+      - sentences:
+          - "(pauzeer|stop) [[de ]muziek]"
 
-  #     - sentences:
-  #         - "pause [the] {name}"
-  #       requires_context:
-  #         domain: media_player
+      - sentences:
+          - "(pauzeer|stop) [de|het] {name}"
+        requires_context:
+          domain: media_player
 
-  # HassMediaUnpause:
-  #   data:
-  #     - sentences:
-  #         - "resume [[the ]music]"
+  HassMediaUnpause:
+    data:
+      - sentences:
+          - "hervat [[de ]muziek]"
+          - "ga verder [met [de ]muziek]"
 
-  #     - sentences:
-  #         - "resume [the] {name}"
-  #       requires_context:
-  #         domain: media_player
+      - sentences:
+          - "hervat [de] {name}"
+        requires_context:
+          domain: media_player
 
-  # HassMediaNext:
-  #   data:
-  #     - sentences:
-  #         - "(next|skip) [[this ](track|song)]"
+  HassMediaNext:
+    data:
+      - sentences:
+          - "volgende [nummer|track|lied[je]]"
+          - "sla dit [nummer|track|liedj[je]] over"
 
-  #     - sentences:
-  #         - "(next|skip) [[the ](track|song)] on [the] {name}"
-  #       requires_context:
-  #         domain: media_player
+      - sentences:
+          - "volgende [nummer|track|lied[je]] op [de|het] {name}"
+          - "sla dit op {name} [nummer|track|liedj[je]] over"
+          - "sla dit [nummer|track|liedj[je]] over op {name}"
+        requires_context:
+          domain: media_player
 
-  # # temperature
-  # HassGetTemperature:
-  #   data:
-  #     - sentences:
-  #         - "(what is|what's|what) the (temp|temperature)"
+  # temperature
+  HassGetTemperature:
+    data:
+      - sentences:
+          - "wat is de temperatuur"
+          - "hoe (warm|koud|heet|koel) is het"
 
-  #     - sentences:
-  #         - "(what is|what's|what) [the] {name} (temp|temperature)"
-  #         - "(what is|what's|what) [the] (temp|temperature) of [the] {name}"
-  #       requires_context:
-  #         domain: climate
+      - sentences:
+          - "wat is de {name}[ ]temperatuur"
+          - "wat is de temperatuur van [de|het] {name}"
+        requires_context:
+          domain: climate
 
-  #     - sentences:
-  #         - "(what is|what's|what) the (temp|temperature) in [the] {area}"
-  #         - "(what is|what's|what) the {area} (temp|temperature)"
+      - sentences:
+          - "wat is de temperatatuur in [de|het] {area}"
+          - "hoe (warm|koud|heet|koel) is het in [de|het] {area}"
+          - "wat is de {area}[ ]temperatuur"
 
-  #     - sentences:
-  #         - "(what is|what's|what) the (temp|temperature) (on|in) [the] {floor} [floor]"
-  #         - "(what is|what's|what) the {floor} [floor] (temp|temperature)"
+      - sentences:
+          - "wat is de temperatatuur in [de|het] {floor}[[ ]verdieping]"
+          - "hoe (warm|koud|heet|koel) is het in [de|het] {floor}[[ ]verdieping]"
+          - "wat is de {floor}[[ ]verdieping][ ]temperatuur"
 
-  # # questions
-  # HassGetState:
-  #   data:
+  # questions
+  HassGetState:
+    data:
+      # doors, etc.
+      - sentences:
+          - "(is|staat) [de|het] {name} {state}"
+        requires_context:
+          domain:
+            - cover
+            - valve
+        lists:
+          state:
+            values:
+              - in: "(gesloten|dicht)"
+                out: closed
+              - in: "open"
+                out: open
 
-  #     # doors, etc.
-  #     - sentences:
-  #         - "is [the] {name} {state}"
-  #       requires_context:
-  #         domain:
-  #           - cover
-  #           - valve
-  #       lists:
-  #         state:
-  #           values:
-  #             - open
-  #             - closed
+      # locks
+      - sentences:
+          - "(is|staat) [de|het] {name} {state}"
+        requires_context:
+          domain: lock
+        lists:
+          state:
+            values:
+              - in: "(op slot|vergrendeld|dicht)"
+                out: locked
+              - in: "(niet op slot|van het slot|ontgrendeld|open)"
+                out: unlocked
 
-  #     # locks
-  #     - sentences:
-  #         - "is [the] {name} {state}"
-  #       requires_context:
-  #         domain: lock
-  #       lists:
-  #         state:
-  #           values:
-  #             - locked
-  #             - unlocked
-
-  # # todo
-  # HassListAddItem:
-  #   data:
-  #     - sentences:
-  #         - "add {todo_item} to [the|my] {name} [list]"
-  #       requires_context:
-  #         domain: todo
+  # todo
+  HassListAddItem:
+    data:
+      - sentences:
+          - "zet {todo_item} op [de|mijn|m'n] {name} [lijst]"
+          - "voeg {todo_item} aan [de|mijn|m'n] {name} [lijst] toe"
+        requires_context:
+          domain: todo
