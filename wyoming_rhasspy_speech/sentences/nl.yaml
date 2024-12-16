@@ -108,22 +108,22 @@ intents:
     data:
       # turn on
       - sentences:
-          - "zet [de] lamp[en] aan"
+          - "(zet|doe) [de] lamp[en] aan"
 
       - sentences:
-          - "zet [de|het] {name} aan"
-          - "zet [de|het] {name} (op|in) [de] {area} aan"
-          - "zet [de|het] {name} (op|in) [de] {floor} [verdieping] aan"
+          - "(zet|doe|maak) [de|het] {name} aan"
+          - "(zet|doe|maak) [de|het] {name} (op|in) [de] {area} aan"
+          - "(zet|doe|maak) [de|het] {name} (op|in) [de] {floor} [verdieping] aan"
         requires_context:
           domain:
             - light
             - switch
 
       - sentences:
-          - "zet [alle] {area}[ ]lampen aan"
-          - "zet [alle] lampen (in|op) [de|het] {area} aan"
-          - "zet [alle] {floor} [verdieping] lampen aan"
-          - "zet [alle] lampen (in|op) [de|het] {floor} [verdieping] aan"
+          - "(zet|doe|maak) [alle] {area}[ ]lampen aan"
+          - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {area} aan"
+          - "(zet|doe|maak) [alle] {floor}[ ][verdieping] lampen aan"
+          - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {floor} [verdieping] aan"
 
       # open
       - sentences:
@@ -134,72 +134,86 @@ intents:
             - cover
             - valve
 
-  #     - sentences:
-  #         - "open [all [of]] [the] {cover_classes} in [the] {area}"
-  #         - "open [all [of]] [the] {area} {cover_classes}"
+      - sentences:
+          - "open [alle] {cover_classes} (in|op) [de|het] {area}"
+          - "(doe|zet|maak) [alle] {cover_classes} (in|op) [de|het] {area} open"
+          - "open [alle] {area}[ ]{cover_classes}"
+          - "(doe|zet|maak) [alle] {area}[ ]{cover_classes} open"
 
-  #     - sentences:
-  #         - "open [all [of]] [the] [the] {cover_classes} (on|in) [the] {floor} [floor]"
-  #         - "open [all [of]] [the] {floor} [floor] {cover_classes}"
+      - sentences:
+          - "open [alle] {cover_classes} (op|in) [de|het] {floor}[ ][verdieping]"
+          - "(doe|zet|maak) [alle] {cover_classes} (op|in) [de|het] {floor}[ ][verdieping] open"
+          - "open [alle] {floor}[ ][floor] {cover_classes}"
+          - "(doe|zet|maak) [alle] {floor}[ ][floor] {cover_classes} open"
 
-  #     # lock
-  #     - sentences:
-  #         - "lock [the] {name}"
-  #       requires_context:
-  #         domain: lock
+      # lock
+      - sentences:
+          - "vergrendel [de|het] {name}"
+          - (zet|doe|maak|draai) [de|het] {name} op slot"
+        requires_context:
+          domain: lock
 
-  #     # script
-  #     - sentences:
-  #         - "run {name}"
-  #       requires_context:
-  #         domain: script
+      # script
+      - sentences:
+          - "start {name}"
+        requires_context:
+          domain: script
 
-  #     # scene
-  #     - sentences:
-  #         - "activate {name}"
-  #       requires_context:
-  #         domain: scene
+      # scene
+      - sentences:
+          - "activeer {name}"
+        requires_context:
+          domain: scene
 
-  # HassTurnOff:
-  #   data:
-  #     # turn off
-  #     - sentences:
-  #         - "turn off [the] lights"
+  HassTurnOff:
+    data:
+      # turn off
+      - sentences:
+        - "(zet|doe) [de] lamp[en] uit"
 
-  #     - sentences:
-  #         - "turn off [the] {name}"
-  #       requires_context:
-  #         domain:
-  #           - light
-  #           - switch
+    - sentences:
+        - "(zet|doe|maak) [de|het] {name} uit"
+        - "(zet|doe|maak) [de|het] {name} (op|in) [de] {area} uit"
+        - "(zet|doe|maak) [de|het] {name} (op|in) [de] {floor} [verdieping] uit"
+      requires_context:
+        domain:
+          - light
+          - switch
 
-  #     - sentences:
-  #         - "turn off [all [of]] [the] {area} lights"
-  #         - "turn off [all [of]] [the] lights in [the] {area}"
+    - sentences:
+        - "(zet|doe|maak) [alle] {area}[ ]lampen uit"
+        - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {area} uit"
+        - "(zet|doe|maak) [alle] {floor}[ ][verdieping] lampen uit"
+        - "(zet|doe|maak) [alle] lampen (in|op) [de|het] {floor} [verdieping] uit"
 
-  #     - sentences:
-  #         - "turn off [all [of]] [the] {floor} [floor] lights"
-  #         - "turn off [all [of]] [the] lights (on|in) [the] {floor} [floor]"
+      # close
+      - sentences:
+        - "sluit [de|het] {name}"
+        - "(doe|maak|zet) [de|het] {name} dicht"
+      requires_context:
+        domain:
+          - cover
+          - valve
 
-  #     # close
-  #     - sentences:
-  #         - "close [the] {name}"
-  #       requires_context:
-  #         domain:
-  #           - cover
-  #           - valve
 
-  #     - sentences:
-  #         - "close [all [of]] [the] {cover_classes} in [the] {area}"
-  #         - "close [all [of]] [the] {area} {cover_classes}"
-  #         - "close [all [of]] [the] {cover_classes} (on|in) [the] {floor} [floor]"
-  #         - "close [all [of]] [the] {floor} [floor] {cover_classes}"
+          - sentences:
+            - "sluit [alle] {cover_classes} (in|op) [de|het] {area}"
+            - "(doe|zet|maak) [alle] {cover_classes} (in|op) [de|het] {area} dicht"
+            - "sluit [alle] {area}[ ]{cover_classes}"
+            - "(doe|zet|maak) [alle] {area}[ ]{cover_classes} dicht"
+  
+        - sentences:
+            - "sluit [alle] {cover_classes} (op|in) [de|het] {floor}[ ][verdieping]"
+            - "(doe|zet|maak) [alle] {cover_classes} (op|in) [de|het] {floor}[ ][verdieping] dicht"
+            - "sluit [alle] {floor}[ ][floor] {cover_classes}"
+            - "(doe|zet|maak) [alle] {floor}[ ][floor] {cover_classes} dicht"
 
-  #     # unlock
-  #     - sentences:
-  #         - "unlock [the] {name}"
-  #       requires_context:
-  #         domain: lock
+      # unlock
+      - sentences:
+        - "ontgrendel [de|het] {name}"
+        - (zet|doe|maak|draai) [de|het] {name} van het slot"
+      requires_context:
+        domain: lock
 
   # # light brightness/color
   # HassLightSet:
