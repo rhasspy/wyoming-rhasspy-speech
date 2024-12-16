@@ -323,84 +323,94 @@ intents:
           - "status van [de|mijn|m'n] timer[s]"
           - "[hoe veel] tijd [is [er]] [nog] [over] (op|van) [de|mijn|m'n] timer[s]"
 
-  # # media players
-  # HassMediaPause:
-  #   data:
-  #     - sentences:
-  #         - "pause [[the ]music]"
+  # media players
+  HassMediaPause:
+    data:
+      - sentences:
+          - "(pauzeer|stop) [[de ]muziek]"
 
-  #     - sentences:
-  #         - "pause [the] {name}"
-  #       requires_context:
-  #         domain: media_player
+      - sentences:
+          - "(pauzeer|stop) [de|het] {name}"
+        requires_context:
+          domain: media_player
 
-  # HassMediaUnpause:
-  #   data:
-  #     - sentences:
-  #         - "resume [[the ]music]"
+  HassMediaUnpause:
+    data:
+      - sentences:
+          - "hervat [[de ]muziek]"
+          - "ga verder [met [de ]muziek]"
 
-  #     - sentences:
-  #         - "resume [the] {name}"
-  #       requires_context:
-  #         domain: media_player
+      - sentences:
+          - "hervat [de] {name}"
+        requires_context:
+          domain: media_player
 
-  # HassMediaNext:
-  #   data:
-  #     - sentences:
-  #         - "(next|skip) [[this ](track|song)]"
+  HassMediaNext:
+    data:
+      - sentences:
+          - "volgende [nummer|track|lied[je]]"
+          - "sla dit [nummer|track|liedj[je]] over"
 
-  #     - sentences:
-  #         - "(next|skip) [[the ](track|song)] on [the] {name}"
-  #       requires_context:
-  #         domain: media_player
+      - sentences:
+          - "volgende [nummer|track|lied[je]] op [de|het] {name}"
+          - "sla dit op {name} [nummer|track|liedj[je]] over"
+          - "sla dit [nummer|track|liedj[je]] over op {name}"
+        requires_context:
+          domain: media_player
 
-  # # temperature
-  # HassGetTemperature:
-  #   data:
-  #     - sentences:
-  #         - "(what is|what's|what) the (temp|temperature)"
+  # temperature
+  HassGetTemperature:
+    data:
+      - sentences:
+          - "wat is de temperatuur"
+          - "hoe (warm|koud|heet|koel) is het"
 
-  #     - sentences:
-  #         - "(what is|what's|what) [the] {name} (temp|temperature)"
-  #         - "(what is|what's|what) [the] (temp|temperature) of [the] {name}"
-  #       requires_context:
-  #         domain: climate
+      - sentences:
+          - "wat is de {name}[ ]temperatuur"
+          - "wat is de temperatuur van [de|het] {name}"
+        requires_context:
+          domain: climate
 
-  #     - sentences:
-  #         - "(what is|what's|what) the (temp|temperature) in [the] {area}"
-  #         - "(what is|what's|what) the {area} (temp|temperature)"
+      - sentences:
+          - "wat is de temperatatuur in [de|het] {area}"
+          - "hoe (warm|koud|heet|koel) is het in [de|het] {area}"
+          - "wat is de {area}[ ]temperatuur"
 
-  #     - sentences:
-  #         - "(what is|what's|what) the (temp|temperature) (on|in) [the] {floor} [floor]"
-  #         - "(what is|what's|what) the {floor} [floor] (temp|temperature)"
+      - sentences:
+          - "wat is de temperatatuur in [de|het] {floor}[[ ]verdieping]"
+          - "hoe (warm|koud|heet|koel) is het in [de|het] {floor}[[ ]verdieping]"
+          - "wat is de {floor}[[ ]verdieping][ ]temperatuur"
 
-  # # questions
-  # HassGetState:
-  #   data:
+  # questions
+  HassGetState:
+    data:
+      # doors, etc.
+      - sentences:
+          - "(is|staat) [de|het] {name} {state}"
+        requires_context:
+          domain:
+            - cover
+            - valve
+        lists:
+          state:
+            values:
+              - in: "(gesloten|dicht)"
+                out: closed
+              - in: "open"
+                out: open
 
-  #     # doors, etc.
-  #     - sentences:
-  #         - "is [the] {name} {state}"
-  #       requires_context:
-  #         domain:
-  #           - cover
-  #           - valve
-  #       lists:
-  #         state:
-  #           values:
-  #             - open
-  #             - closed
-
-  #     # locks
-  #     - sentences:
-  #         - "is [the] {name} {state}"
-  #       requires_context:
-  #         domain: lock
-  #       lists:
-  #         state:
-  #           values:
-  #             - locked
-  #             - unlocked
+      # locks
+      - sentences:
+          - "(is|staat) [de|het] {name} {state}"
+        requires_context:
+          domain: lock
+        lists:
+          state:
+            values:
+              - in: "(op slot|vergrendeld|dicht)"
+                out: locked
+              - in: "(niet op slot|van het slot|ontgrendeld|open)"
+                out: unlocked
 
   # todo
   HassListAddItem:
